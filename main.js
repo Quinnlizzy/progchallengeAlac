@@ -17,14 +17,3 @@ let users = [
      Age: 35}
 ]
 
-// Calculate and output:
-// The average age
-let totalAge = 0;
-for (let i = 0; i < users.length; i++) {
-    totalAge += users[i].Age;
-}
-let averageAge = totalAge / users.length;
-console.log(averageAge);
-
-// The oldest person in the collection
-// The youngest person in the collection
