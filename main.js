@@ -4,13 +4,13 @@
 // Alice, age 20 // Bob, age 25 // Carol, age 30 // Dave, age 35
 
 let users = [
-    {Name: 'Alice', Age: 20},
-    {Name: 'Bob', Age: 25},
-    {Name: 'Carol', Age: 30},
-    {Name: 'Dave', Age: 35},
-    {Name: 'Richard', Age: 34},
-    {Name: 'Eve', Age: 18},
-    {Name: 'Frank', Age: 18}
+    // {Name: 'Alice', Age: 20},
+    // {Name: 'Bob', Age: 25},
+    // {Name: 'Carol', Age: 30},
+    // {Name: 'Dave', Age: 35},
+    // {Name: 'Richard', Age: 34},
+    // {Name: 'Eve', Age: 18},
+    // {Name: 'Frank', Age: 18}
 ]
 
 // 1) Calculate and output the average age
@@ -19,6 +19,9 @@ let users = [
 let totalAge = 0;
 
 function calculateTotalAge(users) {
+
+    // return users.reduce((carry, user) => carry + user.Age, 0);
+
     totalAge = 0;
     for (let i = 0; i < users.length; i++) {
         totalAge += users[i].Age;
@@ -29,14 +32,18 @@ function calculateTotalAge(users) {
 calculateTotalAge(users);
 console.log(totalAge);
 
-let averageAge = 0;
+
 //then cal average age for users
 function calculateAverageAge(users) {
-    averageAge = calculateTotalAge(users) / users.length;
-    return averageAge;
+    if (users.length === 0) {
+        return 0;
+    }
+    let averageAge = calculateTotalAge(users) / users.length;
+    return Math.round(averageAge * 10)/10;
+
 }
 
-calculateAverageAge(users);
+let averageAge = calculateAverageAge(users);
 console.log(averageAge);
 
 
@@ -45,13 +52,15 @@ console.log(averageAge);
 let oldestPerson = users[0];
 
 function calculateOldestPerson(users){
+    if (users.length === 0) {
+        return null;
+    }
     for (let i = 0; i < users.length; i++) {
         if (users[i].Age > oldestPerson.Age) {
             oldestPerson = users[i];
         }
-    }
-    oldestPerson = oldestPerson.Name;
-    return oldestPerson.Name;
+    };
+    return oldestPerson;git 
 }
 
 calculateOldestPerson(users);
@@ -83,14 +92,18 @@ let userList = document.getElementById('userList');
     );
 
 
-
+// 2) Output the average age, oldest person, and youngest person to the DOM
 let renderAverageAge = document.getElementById('averageAge');
 renderAverageAge.textContent = `The average age of our users is ${averageAge}`;
 
 let renderOldestPerson = document.getElementById('oldestUser');
-renderOldestPerson.textContent = `The oldest user is ${oldestPerson}`;
+renderOldestPerson.textContent = `The oldest user is ${oldestPerson ? oldestPerson.Name : 'No users'}`;
 
 let renderYoungestPerson = document.getElementById('youngestUser');
 renderYoungestPerson.textContent = `The youngest user is ${youngestPerson}`;
-//
+
+//add a add new user button + form functionality
+
+// document.getElementById('addUser').addEventListener('submit', function(event) {
+//     event.preventDefault();
 
